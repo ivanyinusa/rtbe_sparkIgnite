@@ -56,7 +56,7 @@ object DirectKafkaWordCount {
 
     // Create direct kafka stream with brokers and topics
     val topicsSet = topics.split(",").toSet
-    val kafkaParams = Map[String, String]("metadata.broker.list" -> brokers)
+    val kafkaParams = Map[String, String]("metadata.broker.list" -> brokers, "zookeeper.connect" -> "192.168.1.101:2181")
     val messages = KafkaUtils.createDirectStream[String, String, StringDecoder, StringDecoder](
       ssc, kafkaParams, topicsSet)
 
